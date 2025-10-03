@@ -75,8 +75,10 @@ This file defines the structure and appearance of the search form and the search
     ```
 
 5.  **Run the Application:** To start the development server, use the following command:
+    
+    *(Note: Using `python -m uvicorn` ensures that you are running the version of Uvicorn installed in your active virtual environment.)*
     ```bash
-    uvicorn main:app --reload
+    python -m uvicorn main:app --reload
     ```
 
 6.  **Access the Application:** Open your web browser and navigate to `http://127.0.0.1:8000`.
