@@ -18,10 +18,10 @@ This is a simple web application built with FastAPI that allows users to search 
 
 ## Project Structure
 
--   `main.py`: Contains the FastAPI application code and API endpoints.
--   `templates/`: Contains the Jinja2 HTML templates for the user interface.
-    -   `search.html`: HTML template for the search form and displaying search results.
--   `venv/`: (Virtual Environment) Contains the project's isolated dependencies.
+-   `main.py`: The core FastAPI application logic.
+-   `templates/search.html`: The Jinja2 template for the UI.
+-   `.env`: File to store environment variables (like the API key). Ignored by Git.
+-   `requirements.txt`: A list of Python dependencies for the project.
 
 ## Code Explanation
 
@@ -47,31 +47,31 @@ This file defines the structure and appearance of the search form and the search
 
 ## Setup Instructions
 
-1.  **Install Dependencies:** Make sure you have Python installed. Then, install the required packages using pip:
+1.  **Clone the repository:**
     ```bash
-    pip install fastapi uvicorn Jinja2 google-api-python-client
+    git clone https://github.com/abhilaikh/Mechanic_Works.git
+    cd Mechanic_Works/youtube-automation
     ```
 
-2.  **Set up environment variables:** Store your YouTube API key in an environment variable named `YOUTUBE_API_KEY`.  You can do this in your terminal before running the app:
-
+2.  **Create and activate a virtual environment:**
     ```bash
-    export YOUTUBE_API_KEY="YOUR_API_KEY"  # Linux/macOS
-    # or
-    set YOUTUBE_API_KEY="YOUR_API_KEY"  # Windows
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
     ```
-    Replace `"YOUR_API_KEY"` with your actual YouTube API key.
 
-3.  **Run the Application:** To start the server, use the following command:
+3.  **Install Dependencies:** Install the required packages from the `requirements.txt` file.
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4.  **Set up environment variables:** Create a file named `.env` in the project root and add your YouTube API key to it:
+    ```bash
+    YOUTUBE_API_KEY="YOUR_API_KEY_HERE"
+    ```
+
+5.  **Run the Application:** To start the development server, use the following command:
     ```bash
     uvicorn main:app --reload
     ```
-    This command starts the FastAPI application using Uvicorn, a production-ready ASGI server. The `--reload` flag enables automatic reloading upon code changes, which is useful during development.
 
-4.  **Access the Application:** Open your web browser and go to `http://127.0.0.1:8000/` to see the search form.
-
-## Folder Architecture
-
--   **Project Root:** This is the main directory containing all project files.
--   `main.py`: This file contains the FastAPI application code.
--   `templates/`: This directory contains the Jinja2 HTML templates used to render the user interface.
--   `venv/`: This directory (which might be hidden in your file explorer) typically contains the virtual environment for the project.
+6.  **Access the Application:** Open your web browser and navigate to `http://127.0.0.1:8000`.
