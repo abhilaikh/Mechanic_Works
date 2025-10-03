@@ -54,14 +54,19 @@ This file defines the structure and appearance of the search form and the search
     ```
 
 2.  **Create and activate a virtual environment:**
+    
+    *(Note: Depending on your system's configuration, you may need to use `python3` instead of `python`)*.
     ```bash
     python -m venv venv
     source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
     ```
 
 3.  **Install Dependencies:** Install the required packages from the `requirements.txt` file.
+    
+    *(Note: Using `python -m pip` is recommended as it ensures you are using the pip version associated with your selected Python interpreter. It's also good practice to upgrade pip first.)*
     ```bash
-    pip install -r requirements.txt
+    python -m pip install --upgrade pip
+    python -m pip install -r requirements.txt
     ```
 
 4.  **Set up environment variables:** Create a file named `.env` in the project root and add your YouTube API key to it:
