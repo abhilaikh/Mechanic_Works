@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>YouTube Video Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            color: #d12121;
+        }
+        form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            background-color: #d12121;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        button:hover {
+            background-color: #a31a1a;
+        }
+        .video-item {
+            display: flex;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .thumbnail {
+            margin-right: 15px;
+        }
+        .thumbnail img {
+            width: 160px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .video-details h3 a {
+            color: #333;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .video-details h3 a:hover {
+            text-decoration: underline;
+        }
+        .video-details p {
+            font-size: 0.9em;
+            color: #666;
+            margin: 5px 0;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Video Search</h1>
+
+        <form action="/search-youtube" method="post">
+            <input type="text" name="query" placeholder="Enter a search term" size="50" value="{{ query or '' }}">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if results %}
+            <h2>Results for "{{ query }}"</h2>
+            {% for video in results %}
+                <div class="video-item">
+                    <div class="thumbnail">
+                        <a href="https://www.youtube.com/watch?v={{ video.video_id }}" target="_blank">
+                            <img src="{{ video.thumbnail_url }}" alt="Video thumbnail">
+                        </a>
+                    </div>
+                    <div class="video-details">
+                        <h3><a href="https://www.youtube.com/watch?v={{ video.video_id }}" target="_blank">{{ video.title }}</a></h3>
+                        <p><strong>Channel:</strong> {{ video.channel_title }}</p>
+                        <p>{{ video.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+    </div>
+</body>
+</html>
